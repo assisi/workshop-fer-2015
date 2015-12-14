@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sys import argv
+
 """
 A simple demo of Casu interaction.
 The Casu diagnostic LED lights red, when an object appears in front,
@@ -37,7 +39,7 @@ class CasuController:
 
 if __name__ == '__main__':
 
-    ctrl = CasuController('casu.rtc')
+    ctrl = CasuController(argv[1])
 
     # Run the Casu control program.
     ctrl.react_to_bees()
