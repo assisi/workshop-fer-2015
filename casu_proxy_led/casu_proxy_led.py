@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sys import argv
+from time import sleep
 
 """
 A simple demo of Casu interaction.
@@ -30,12 +31,20 @@ class CasuController:
             and to Green, when a bee is detected behind a Casu.
         """
         while True:
-            if self.__casu.get_range(casu.IR_F) < 2:
+            print(self.__casu.get_ir_raw_value(casu.ARRAY))
+            self.__casu.diagnostic_led_standby()
+            if self.__casu.get_ir_raw_value(casu.IR_F) > 10000:
                 self.__casu.set_diagnostic_led_rgb(g=1)
-            elif self.__casu.get_range(casu.IR_B) < 2:
+            if self.__casu.get_ir_raw_value(casu.IR_B) > 10000:
                 self.__casu.set_diagnostic_led_rgb(r=1)
-            else:
-                self.__casu.diagnostic_led_standby()
+            if (self.__casu.get_ir_raw_value(casu.IR_FR) > 10000 or
+                self.__casu.get_ir_raw_value(casu.IR_BR) > 10000):
+                self.__casu.set_diagnostic_led_rgb(b=1)
+            if (self.__casu.get_ir_raw_value(casu.IR_FL) > 10000 or
+                self.__casu.get_ir_raw_value(casu.IR_BL) > 10000):
+                self.__casu.set_diagnostic_led_rgb(b=1)
+            sleep(0.5)
+
 
 if __name__ == '__main__':
 
