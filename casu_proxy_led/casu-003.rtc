@@ -7,16 +7,17 @@ name     : casu-003
 # Address at which the Casu listens for incoming commands
 # (i.e., the address to which the controller publishes
 # control commands).
-pub_addr : tcp://192.168.12.105:5560
+pub_addr : tcp://192.168.12.105:3556
 
 # Address to which the Casu publishes sensor data
 # (i.e., address from which the controller
 # reads sensor data).
-sub_addr : tcp://192.168.12.105:5559
+sub_addr : tcp://192.168.12.105:3555
 
 # Messaging socket address
 # This will work for both simulation and deployment
 msg_addr : tcp://*:50103
 
+neighbors : 
 
 
